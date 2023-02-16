@@ -1,0 +1,21 @@
+##################################################################################################################################
+# Following is an example of how to structure a schema yaml file. Each folder that contains models should also contain a 
+# schema yaml file describing the models contained within the folder. 
+##################################################################################################################################
+
+version: 2
+
+models:
+
+
+#    - name: orders_rslt
+#      description: "orders results table"
+#      columns:
+#          - name: O_ORDERKEY
+#            description: "The primary key for this table"
+#            tests:
+#              - dbt_constraints.unique_key
+#              - unique
+#              - not_null
+#              - accepted_values
+#              - relationships

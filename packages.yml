@@ -1,0 +1,14 @@
+# This is your packages.yml file. This is where you declare packages that your project depends on. 
+# For full documentation: https://docs.getdbt.com/docs/building-a-dbt-project/package-management
+
+packages:
+# The following need uncommented and updated to the corresponding FITB packages
+  - git: "https://github.com/marcejohnson10/fitb-dbt-utils.git"
+    revision: "fitb-utils"
+  - git: "https://github.com/marcejohnson10/flat-json-techx.git"
+    revision: "flat-json"     
+
+#  - git: ""git@github.info53.com:fitb-data-pipelines/dbt-template.git""
+#    revision: "mj-utilities"
+#  - git: ""git@github.info53.com:fitb-data-pipelines/dbt-template.git""
+#    revision: "mj-techx"
