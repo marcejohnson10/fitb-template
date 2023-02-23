@@ -5,8 +5,8 @@ packages:
 # The following need uncommented and updated to the corresponding FITB packages
   - git: "https://github.com/marcejohnson10/fitb-techx.git"
     revision: "mj-techx"
-  - git: "https://github.com/marcejohnson10/fitb-utilities.git"
-    revision: "mj-utilities"     
+#  - git: "https://github.com/marcejohnson10/fitb-utilities.git"
+#    revision: "mj-utilities"     
 
 #  - git: ""git@github.info53.com:fitb-data-pipelines/dbt-template.git""
 #    revision: "mj-techx"
