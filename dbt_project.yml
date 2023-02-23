@@ -40,7 +40,7 @@ seed-paths: ["managed_assets/seeds"]
 snapshot-paths: ["managed_assets/snapshots"]
 log-path: "data_project_assets/logs"
 packages-install-path: "managed_assets/packages"
-target-path: "data_project_assets/target"   # directory which will store compiled SQL files
+target-path: "target" #"data_project_assets/target"   # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "managed_assets/target"
   - "data_project_assets/target"
