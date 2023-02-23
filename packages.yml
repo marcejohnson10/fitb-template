@@ -4,7 +4,7 @@
 packages:
 # The following need uncommented and updated to the corresponding FITB packages
   - git: "https://github.com/marcejohnson10/fitb-techx.git"
-    revision: "fitb-utils"
+    revision: "mj-techx"
   - git: "https://github.com/marcejohnson10/fitb-utilities.git"
     revision: "mj-utilities"     
 
