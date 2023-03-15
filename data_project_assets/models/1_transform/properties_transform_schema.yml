@@ -5,10 +5,10 @@
 
 version: 2
 
-#models:
+models:
 
 
-#    - name: orders_rslt
+    - name: orders
 #      description: "orders results table"
 #      columns:
 #          - name: O_ORDERKEY
