@@ -5,10 +5,27 @@
 
 version: 2
 
-#models:
+models:
 
+    - name: orders_datatype_test_src
+#      description: "orders results table"
+      columns:
+          - name: INGESTION_TIMESTAMP
+#            description: "The primary key for this table"
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: timestamp
 
-#    - name: orders_rslt
+    - name: orders_datatype_test
+#      description: "orders results table"
+      columns:
+          - name: INGESTION_TIMESTAMP
+#            description: "The primary key for this table"
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: TIMESTAMP_NTZ
+
+    - name: orders
 #      description: "orders results table"
 #      columns:
 #          - name: O_ORDERKEY

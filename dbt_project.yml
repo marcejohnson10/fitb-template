@@ -20,7 +20,7 @@ profile: 'my_project_profile'
 ###################################################################################
 vars:
 
-  # Enables the package DBT_CONSTRAINTS. Package details: https://hub.getdbt.com/snowflake-labs/dbt_constraints/latest/
+   # Enables the package DBT_CONSTRAINTS. Package details: https://hub.getdbt.com/snowflake-labs/dbt_constraints/latest/
   dbt_constraints_enabled: false
   # The DBT_CONSTRAINTS package can also add constraints on sources if you have sufficient privileges
   dbt_constraints_sources_enabled: false
