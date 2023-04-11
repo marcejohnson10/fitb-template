@@ -1,5 +1,7 @@
 
 select 
+{{env_var('DBT_MY_DB')}} x_env_my_db,
+{{env_var('DBT_MY_ENV')}} x_env_my_env,
 '{{ target_model }}'  x_model,
 '{{ target.type }}' x_type,
 '{{ target.schema }}' x_schema,
