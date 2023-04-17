@@ -16,11 +16,20 @@
 {% set cleanup_query %}
       with models_to_drop as (
         select
+        table_catalog database_name, 
+        table_schema schema_name, 
+        table_name object_name,
           case 
             when table_type = 'BASE TABLE' then 'TABLE'
             when table_type = 'VIEW' then 'VIEW'
           end as relation_type,
-          concat_ws('.', table_catalog, table_schema, table_name) as relation_name
+          concat_ws('.', table_catalog, table_schema, table_name) as relation_name,
+          '{{ target.name }}' as dbt_project_name,
+          created, 
+          last_altered,
+          last_ddl,
+          last_ddl_by,
+          retention_time
         from 
           {{ target.database }}.information_schema.tables
         where table_schema in ({{schemas}}) --'{{ target.schema }}'
@@ -36,13 +45,24 @@
       
       select 
         'drop ' || relation_type || ' ' || relation_name || ';' as drop_commands,
+        database_name, 
+        schema_name, 
+        object_name,
         relation_type,
-        relation_name
+        relation_name,
+        dbt_project_name,
+        created, 
+        last_altered,
+        last_ddl,
+        last_ddl_by,
+        retention_time
       from 
         models_to_drop
       where drop_commands is not null
       order by relation_type, relation_name
   {% endset %}
+
+{{ return(cleanup_query) }}
 
 {# {% do log(cleanup_query, info=True) %} #}
 

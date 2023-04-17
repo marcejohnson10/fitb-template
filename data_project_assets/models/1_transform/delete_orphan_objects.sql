@@ -1,3 +1,3 @@
-select 1 from {{ ref('orders') }}
-
+select * from (
 {{find_orphan_tables_views('transform,raw', 'true')}}
+)
