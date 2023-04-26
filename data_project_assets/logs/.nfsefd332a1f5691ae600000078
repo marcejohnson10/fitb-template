@@ -24079,3 +24079,45 @@ where dbt_metadata is not null
 2023-04-26 21:19:48.297548 (Thread-1106): handling ps request
 2023-04-26 21:19:48.298072 (Thread-1106): 21:19:48  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f4419310>]}
 2023-04-26 21:19:48.300082 (Thread-1106): sending response (<Response 22056 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:19:57.983594 (Thread-1107): 21:19:57  checksum: 0049c9ca814b191acba678e7b1a0d7a85eeac3e13700309cfc1ce1a2c78d3886, vars: {}, profile: user, target: None, version: 1.4.6
+2023-04-26 21:19:57.987447 (Thread-1107): 21:19:57  Unable to do partial parsing because saved manifest not found. Starting full parse.
+2023-04-26 21:19:57.987834 (Thread-1107): 21:19:57  Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f43092b0>]}
+2023-04-26 21:19:58.520131 (Thread-1108): handling status request
+2023-04-26 21:19:58.520645 (Thread-1108): 21:19:58  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f4309a90>]}
+2023-04-26 21:19:58.521145 (Thread-1108): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:10.946070 (Thread-1109): handling status request
+2023-04-26 21:21:10.947200 (Thread-1109): 21:21:10  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f428b730>]}
+2023-04-26 21:21:10.947690 (Thread-1109): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:27.550584 (Thread-1110): 21:21:27  checksum: 0049c9ca814b191acba678e7b1a0d7a85eeac3e13700309cfc1ce1a2c78d3886, vars: {}, profile: user, target: None, version: 1.4.6
+2023-04-26 21:21:27.554729 (Thread-1110): 21:21:27  Unable to do partial parsing because saved manifest not found. Starting full parse.
+2023-04-26 21:21:27.555080 (Thread-1110): 21:21:27  Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f971435c700>]}
+2023-04-26 21:21:27.909637 (Thread-1111): handling status request
+2023-04-26 21:21:27.910164 (Thread-1111): 21:21:27  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f432bca0>]}
+2023-04-26 21:21:27.910683 (Thread-1111): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:28.622309 (Thread-1112): handling ps request
+2023-04-26 21:21:28.622870 (Thread-1112): 21:21:28  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f432b580>]}
+2023-04-26 21:21:28.624801 (Thread-1112): sending response (<Response 22056 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:35.277740 (Thread-1113): handling ps request
+2023-04-26 21:21:35.278256 (Thread-1113): 21:21:35  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f43198b0>]}
+2023-04-26 21:21:35.280219 (Thread-1113): sending response (<Response 22056 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:35.366270 (Thread-1114): handling status request
+2023-04-26 21:21:35.366829 (Thread-1114): 21:21:35  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f973463b100>]}
+2023-04-26 21:21:35.367310 (Thread-1114): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:35.724766 (Thread-1115): handling status request
+2023-04-26 21:21:35.725313 (Thread-1115): 21:21:35  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f432bd00>]}
+2023-04-26 21:21:35.725838 (Thread-1115): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:35.834117 (Thread-1116): handling ps request
+2023-04-26 21:21:35.834648 (Thread-1116): 21:21:35  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f432bc10>]}
+2023-04-26 21:21:35.836565 (Thread-1116): sending response (<Response 22056 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:36.447823 (Thread-1117): handling status request
+2023-04-26 21:21:36.448337 (Thread-1117): 21:21:36  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f96f42aa880>]}
+2023-04-26 21:21:36.448822 (Thread-1117): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:48.421725 (Thread-1118): 21:21:48  checksum: 0049c9ca814b191acba678e7b1a0d7a85eeac3e13700309cfc1ce1a2c78d3886, vars: {}, profile: user, target: None, version: 1.4.6
+2023-04-26 21:21:48.425595 (Thread-1118): 21:21:48  Unable to do partial parsing because saved manifest not found. Starting full parse.
+2023-04-26 21:21:48.425976 (Thread-1118): 21:21:48  Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f97143727f0>]}
+2023-04-26 21:21:48.859058 (Thread-1119): handling status request
+2023-04-26 21:21:48.859559 (Thread-1119): 21:21:48  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f97143728b0>]}
+2023-04-26 21:21:48.860064 (Thread-1119): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
+2023-04-26 21:21:48.862523 (Thread-1120): handling status request
+2023-04-26 21:21:48.862878 (Thread-1120): 21:21:48  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'c5e3ffd7-405f-4833-8201-9307ecb1433c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9714372c70>]}
+2023-04-26 21:21:48.863254 (Thread-1120): sending response (<Response 1478 bytes [200 OK]>) to 10.0.145.52
