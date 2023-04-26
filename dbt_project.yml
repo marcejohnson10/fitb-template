@@ -32,19 +32,19 @@ vars:
 # These configurations specify where dbt should look for different types of files
 # and any hooks to execute at start or end of a project run or build. 
 ###################################################################################
-macro-paths: ["managed_assets/packages/fitb_dbt_utils/macros","data_project_assets/macros"]
+macro-paths: ["packages/managed_assets/fitb_dbt_utils/macros","data_project_assets/macros"]
 model-paths: ["data_project_assets/models"]
 test-paths: ["data_project_assets/tests"]
 #analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
-seed-paths: ["managed_assets/seeds"]
-snapshot-paths: ["managed_assets/snapshots"]
+seed-paths: ["packages/managed_assets/seeds"]
+snapshot-paths: ["packages/managed_assets/snapshots"]
 log-path: "data_project_assets/logs"
-packages-install-path: "managed_assets/packages"
+packages-install-path: "packages/managed_assets/packages"
 target-path: "data_project_assets/target"   # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
-  - "managed_assets/target"
+  - "packages/managed_assets/target"
   - "data_project_assets/target"
-  - "managed_assets/packages"
+  - "packages/managed_assets/packages"
   - "shared_assets"
   - "target"
   - "dbt_packages"
