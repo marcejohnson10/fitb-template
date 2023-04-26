@@ -44,6 +44,7 @@ target-path: "data_project_assets/target"   # directory which will store compile
 clean-targets:         # directories to be removed by `dbt clean`
   - "managed_assets/target"
   - "data_project_assets/target"
+  - "data_project_assets/logs"
   - "managed_assets/packages"
   - "shared_assets"
   - "target"
