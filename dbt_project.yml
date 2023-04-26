@@ -79,4 +79,11 @@ models:
       schema: data_product
       materialized: view
 
+  dbt_snowflake_monitoring:
+    +database: DBT_DEMO_METADATA # optional, default is your target database
+    +schema: MONITORING # optional, default is your target schema
+    staging:
+      +database: DBT_DEMO_METADATA # optional, default is your target database
+      +schema: MONITORING_STAGE # optional, default is your target schema
+
  
