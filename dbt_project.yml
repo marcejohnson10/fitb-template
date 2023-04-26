@@ -33,7 +33,7 @@ vars:
 # and any hooks to execute at start or end of a project run or build. 
 ###################################################################################
 macro-paths: ["packages/managed_assets/fitb_dbt_utils/macros","data_project_assets/macros"]
-model-paths: ["models"]
+model-paths: ["models","packages/managed_assets/packages/fitb_tech_transformation/models"]
 test-paths: ["tests"]
 #analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
 seed-paths: ["packages/managed_assets/seeds"]
