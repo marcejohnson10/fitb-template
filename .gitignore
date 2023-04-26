@@ -1,6 +1,6 @@
 # you shouldn't commit these into source control
 packages/managed_assets/
-data_project_assets/logs/
+packages/logs/
 data_project_assets/target/
 dbt_packages/
 #target/

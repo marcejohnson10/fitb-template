@@ -33,20 +33,19 @@ vars:
 # and any hooks to execute at start or end of a project run or build. 
 ###################################################################################
 macro-paths: ["packages/managed_assets/fitb_dbt_utils/macros","data_project_assets/macros"]
-model-paths: ["data_project_assets/models"]
-test-paths: ["data_project_assets/tests"]
+model-paths: ["models"]
+test-paths: ["tests"]
 #analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
 seed-paths: ["packages/managed_assets/seeds"]
 snapshot-paths: ["packages/managed_assets/snapshots"]
-log-path: "data_project_assets/logs"
+log-path: "packages/logs"
 packages-install-path: "packages/managed_assets/packages"
-target-path: "data_project_assets/target"   # directory which will store compiled SQL files
+target-path: "target"   # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "packages/managed_assets/target"
-  - "data_project_assets/target"
+  - "target"
   - "packages/managed_assets/packages"
   - "shared_assets"
-  - "target"
   - "dbt_packages"
 
 dispatch:
