@@ -72,5 +72,8 @@ models:
     2_data_product:
       schema: data_product
       materialized: view
-
+sources:
+  fitb_tech_transformation: 
+    raw: 
+      +enabled: true
  
