@@ -26,6 +26,9 @@ vars:
   dbt_constraints_sources_enabled: false
   'dbt_date:time_zone': 'America/New_York'
 
+query-comment:
+  comment: '{{ dbt_snowflake_monitoring.get_query_comment(node) }}'
+  append: true # Snowflake removes prefixed comments
     
 ###################################################################################      
 # FILE PATHS & HOOKS
@@ -51,9 +54,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 dispatch:
   - macro_namespace: dbt
-    search_order: ['my_project_name', 'fitb_dbt_utils', 'dbt_project_evaluator', 'dbt']
+    search_order: ['my_project_name', 'fitb_dbt_utils', 'dbt_snowflake_monitoring', 'dbt_project_evaluator', 'dbt']
   - macro_namespace: dbt_utils
     search_order: ['my_project_name', 'fitb_dbt_utils', 'dbt_utils']
+
+
 
 ################################################################################### 
 # PROJECT RESOURCES 
