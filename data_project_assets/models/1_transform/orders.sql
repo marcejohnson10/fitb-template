@@ -1,1 +1,1 @@
-select * from DBT_DEMO_PROJECT.RAW.ORDERS_RAW
+select * from DBT_DEMO_PROJECT.RAW.ORDERS
