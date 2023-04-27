@@ -32,7 +32,8 @@ vars:
 # These configurations specify where dbt should look for different types of files
 # and any hooks to execute at start or end of a project run or build. 
 ###################################################################################
-macro-paths: ["packages/managed_assets/fitb_dbt_utils/macros","data_project_assets/macros"]
+macro-paths: ["macros", "packages/managed_assets/fitb_dbt_utils/macros"]
+#macro-paths: ["packages/managed_assets/fitb_dbt_utils/macros","data_project_assets/macros"]
 model-paths: ["models"]
 test-paths: ["tests"]
 #analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
