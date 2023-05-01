@@ -9,13 +9,12 @@
         match_conditions = []
     )
 }}
-with src as (
-select {{ dbt_utils.star ( from=ref('orders') ) }},
-       {{ get_cdc_metadata_col('1') }}
-from {{ ref('orders') }} 
+
+select {{ dbt_utils.star ( from=ref('orders_rslt') ) }},
+       {{ get_cdc_metadata_columns('1') }}
+from {{ ref('orders_rslt') }} 
 where INGESTION_UNIQUE_KEY IN (
         SELECT INGESTION_UNIQUE_KEY
-        FROM {{ create_stream (ref('orders')) }}
+        FROM {{ create_stream (ref('orders_rslt')) }}
         where METADATA$ACTION = 'INSERT')
-)
-{{ get_deduped_qry ('src') }}
+

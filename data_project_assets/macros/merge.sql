@@ -27,18 +27,26 @@
 
         {%- set dest_col = dbt_utils.get_filtered_columns_in_relation(source) -%}
 
-        {%- set source -%}
-              (select * from {{source}}_STREAM where METADATA$ACTION = 'INSERT')
-        {%- endset -%}
-        {%- set source =  fitb_dbt_utils.get_deduped_qry (source) -%}
+        {%- set metadata_col_lst = ['Z_LOAD_TIMESTAMP', 'Z_LAST_UPDATE_TIMESTAMP'] if change_data_capture_type == '1' else ['Z_LOAD_TIMESTAMP', 'Z_LAST_UPDATE_TIMESTAMP', 'Z_START_TIMESTAMP', 'Z_END_TIMESTAMP', 'Z_CURRENT_FLAG']  -%}
+        
+        {%- for metadata_col in metadata_col_lst-%}
+            {%- do dest_col.append(metadata_col) -%}
+        {%- endfor-%}
+         
+        {%- set strm_col_list = dbt_utils.get_filtered_columns_in_relation(source) -%}       
 
-	    {%- if change_data_capture_type == '1' -%}
-		    {%- do dest_col.append('Z_LAST_UPDATE_TIMESTAMP') -%}
-	    {%-elif change_data_capture_type == '2' -%}
-		    {%- do dest_col.append('Z_START_DATE') -%}
-	    	{%- do dest_col.append('Z_END_DATE') -%}
-	    	{%- do dest_col.append('Z_CURRENT_FLAG') -%}
-	    {%- endif -%}
+        {%- if unique_key is sequence and unique_key is not mapping and unique_key is not string -%}
+            {%- set partition_key = unique_key| join(', ') -%}
+        {%- else -%}
+            {%- set partition_key = unique_key -%}
+        {%- endif -%}
+
+        {%- set source -%}
+              select {{ strm_col_list | join(', ') }} from {{source.database}}.{{source.schema}}.{{target.name}}_STREAM 
+              where METADATA$ACTION = 'INSERT'
+              qualify row_number() over (partition by {{ partition_key }} order by ingestion_timestamp desc) = 1
+        {%- endset -%}
+
     {%- elif called_by_tsk == 'N'-%}
         {%- for col in dest_columns | map(attribute="name") -%}
             {%- do dest_col.append(col) -%}
@@ -135,6 +143,7 @@
             {%- set update_columns = dest_col if config.get('cdc_type_1_update_columns', []) == [] else  config.get('cdc_type_1_update_columns') -%}         
             {%-if config.get('cdc_type_1_update_columns', []) != []  -%}
                 {%- do update_columns.append('Z_LAST_UPDATE_TIMESTAMP') -%}  
+                {%- do update_columns.append('Z_LOAD_TIMESTAMP') -%} 
             {%- endif -%}          
         {%- elif cdc_type_1_update_columns_strategy == [] -%}
             {{ exceptions.raise_compiler_error(
@@ -151,6 +160,20 @@
             using ({{ source }}) as DBT_INTERNAL_SOURCE
             on {{ predicates | join(' and ') }}
         {% if unique_key -%}
+
+        and  (
+        {%- for col in src_col_lst-%}
+                {%- if not loop.last -%}
+                {%- set col = col  + ' is not null and ' -%}
+                        {{ col }}
+                   
+                {%- else -%}
+                   {%- set col = col  + ' is not null ' -%}
+                        {{ col }}
+                {%- endif -%}
+        {%- endfor -%} 
+             )
+             
         when matched
             {%- if match_conditions -%}
                 {%- for cond in match_conditions -%}
@@ -163,25 +186,40 @@
                         {{ conds }}
             {%- endfor -%}
             {% endif %} 
-        and DBT_INTERNAL_SOURCE.INGESTION_UNIQUE_KEY <> DBT_INTERNAL_DEST.INGESTION_UNIQUE_KEY   
+        and DBT_INTERNAL_SOURCE.INGESTION_UNIQUE_KEY <> DBT_INTERNAL_DEST.INGESTION_UNIQUE_KEY 
+               
         then update set
         {%- for column_name in update_columns -%}
             {%- if column_name == 'Z_LAST_UPDATE_TIMESTAMP' %}
                 {{ column_name }} = current_timestamp()
+            {%- elif column_name == 'Z_LOAD_TIMESTAMP' %}
+                {{ column_name }} = DBT_INTERNAL_DEST.{{ column_name }}
             {%- else %}
                 {{ column_name }} = DBT_INTERNAL_SOURCE.{{ column_name }}
             {%- endif -%}  
             {%- if not loop.last-%}, {%- endif -%}
         {%- endfor -%}
         {% endif %}               
-        when not matched then insert
+        when not matched and (
+        {%- for col in src_col_lst-%}
+                {%- if not loop.last -%}
+                {%- set col = col  + ' is not null and ' -%}
+                        {{ col }}
+                   
+                {%- else -%}
+                   {%- set col = col  + ' is not null ' -%}
+                        {{ col }}
+                {%- endif -%}
+        {%- endfor -%} 
+             ) 
+        then insert
             ({{ dest_cols_csv }})
         values
            ({%if called_by_tsk == 'Y' %}
                 {%- for column_name in dest_col-%}
-                    {%- if column_name == 'Z_LAST_UPDATE_TIMESTAMP' %}
+                    {%- if column_name == 'Z_LAST_UPDATE_TIMESTAMP' or column_name == 'Z_LOAD_TIMESTAMP' %}
                         current_timestamp()
-                    {%- elif column_name == 'Z_START_DATE' %}
+                    
                     {%- else -%}
                         {{ column_name }}
                     {%- endif -%}
@@ -199,7 +237,8 @@
         {#-- Close the old records if new updates are made for a given unique key --#}
         ---Make previous records inactive for unique keys that are getting updated
         update {{target}} DBT_INTERNAL_DEST 
-            set Z_END_DATE = current_date(),
+            set Z_END_TIMESTAMP = current_timestamp(),
+                Z_LAST_UPDATE_TIMESTAMP = current_timestamp(),
                 Z_CURRENT_FLAG = 'N'
         from (
         {{source}}
@@ -217,6 +256,18 @@
             {%- endfor -%}
         {%- endif -%}
         and DBT_INTERNAL_DEST.Z_CURRENT_FLAG = 'Y'
+        and (
+        {%- for col in src_col_lst-%}
+                {%- if not loop.last -%}
+                {%- set col = col  + ' is not null and ' -%}
+                        {{ col }}
+                   
+                {%- else -%}
+                   {%- set col = col  + ' is not null ' -%}
+                        {{ col }}
+                {%- endif -%}
+        {%- endfor -%} 
+             )
         and DBT_INTERNAL_SOURCE.INGESTION_UNIQUE_KEY <> DBT_INTERNAL_DEST.INGESTION_UNIQUE_KEY 
         ;
         {# -- Insert the new update from the source  #}
@@ -225,10 +276,10 @@
         ({{ dest_cols_csv }})
         select 
         {% for column_name in dest_col %}
-            {%- if column_name == 'Z_START_DATE' -%}
-                current_date()
-            {%- elif column_name == 'Z_END_DATE' -%}
-                NULL
+            {%- if column_name == 'Z_START_TIMESTAMP' or column_name == 'Z_LOAD_TIMESTAMP' or column_name == 'Z_LAST_UPDATE_TIMESTAMP' -%}
+                current_timestamp()
+            {%- elif column_name == 'Z_END_TIMESTAMP' -%}
+                '9999-12-31':: timestamp
             {%- elif column_name == 'Z_CURRENT_FLAG' -%}
                 'Y'
             {%- else -%}
@@ -236,13 +287,11 @@
             {%- endif -%}
             {%- if not loop.last -%}, {% endif %}
         {%- endfor %}
-        from (
-            {{ source }}       
-         )as DBT_INTERNAL_SOURCE, 
+        from ({{ source }}) as DBT_INTERNAL_SOURCE, 
         (
             select * 
             from {{target}} as DBT_INTERNAL_DEST
-            qualify row_number() over (partition by {{ tgt_col_lst | join(' , ') }}  order by DBT_INTERNAL_DEST.Z_END_DATE desc)  = 1 
+            qualify row_number() over (partition by {{ tgt_col_lst | join(' , ') }}  order by DBT_INTERNAL_DEST.Z_END_TIMESTAMP desc)  = 1 
         ) as DBT_INTERNAL_DEST
         where {{ predicates | join(' and ') }}
         {% if match_conditions %}
@@ -256,6 +305,18 @@
                         {{ conds }}
             {%- endfor -%}
         {%- endif -%}
+        and (
+        {%- for col in src_col_lst-%}
+                {%- if not loop.last -%}
+                {%- set col = col  + ' is not null and ' -%}
+                        {{ col }}
+                   
+                {%- else -%}
+                   {%- set col = col  + ' is not null ' -%}
+                        {{ col }}
+                {%- endif -%}
+        {%- endfor -%} 
+             )
         and DBT_INTERNAL_SOURCE.INGESTION_UNIQUE_KEY <> DBT_INTERNAL_DEST.INGESTION_UNIQUE_KEY
         ;    
         {# -- Insert the new records from the source (new unique ids)  #}
@@ -264,10 +325,10 @@
         ({{ dest_cols_csv }})
         select 
         {% for column_name in dest_col %}
-           {%- if column_name == 'Z_START_DATE' -%}
-                current_date()
-            {%- elif column_name == 'Z_END_DATE' -%}
-                NULL
+           {%- if column_name == 'Z_START_TIMESTAMP' or column_name == 'Z_LOAD_TIMESTAMP' or column_name == 'Z_LAST_UPDATE_TIMESTAMP' -%}
+                current_timestamp()
+            {%- elif column_name == 'Z_END_TIMESTAMP' -%}
+                '9999-12-31':: timestamp
             {%- elif column_name == 'Z_CURRENT_FLAG' -%}
                 'Y'
             {%- else -%}
@@ -278,7 +339,19 @@
         from ({{ source }}) as DBT_INTERNAL_SOURCE
         where ({{ src_col_lst | join(' , ') }}) not in
         (select distinct {{ tgt_col_lst | join(' , ') }} from {{target}} as DBT_INTERNAL_DEST ) 
-		;
+		and (
+        {%- for col in src_col_lst-%}
+                {%- if not loop.last -%}
+                {%- set col = col  + ' is not null and ' -%}
+                        {{ col }}
+                   
+                {%- else -%}
+                   {%- set col = col  + ' is not null ' -%}
+                        {{ col }}
+                {%- endif -%}
+        {%- endfor -%} 
+             )
+        ;
             
     {%- endif -%}
 {%- endmacro -%}
