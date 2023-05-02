@@ -1,7 +1,7 @@
 {{
     config(
         materialized ='incremental',
-        unique_key = ['INGESTION_UNIQUE_KEY'],
+        unique_key = 'INGESTION_UNIQUE_KEY',
         on_schema_change='sync_all_columns',
         change_data_capture_type = '1',
         cdc_type_1_update_columns_strategy = 'include',
