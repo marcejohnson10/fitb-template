@@ -3,5 +3,5 @@ managed_assets/
 data_project_assets/logs/
 data_project_assets/target/
 dbt_packages/
-#target/
+target/
 logs/

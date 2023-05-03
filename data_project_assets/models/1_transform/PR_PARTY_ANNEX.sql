@@ -21,7 +21,7 @@ nvl(s2.LEGAL_FULL_NM_SPACE_POSITION,t1.LEGAL_FULL_NM_SPACE_POSITION) LEGAL_FULL_
        {{ get_cdc_metadata_columns('1') }}
 from {{ ref('PR_ORG_LEGALNM') }} s1 full outer join {{ ref('PR_ORG_LEGALFULLNM') }} s2
 on s1.cont_id = s2.cont_id
-left outer join {{ this }} t1 
+left outer join {{ this }} t1   
 on s1.cont_id = t1.cont_id 
 left outer join {{ this }} t2 
 on s2.cont_id = t2.cont_id

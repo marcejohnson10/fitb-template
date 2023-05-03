@@ -39,7 +39,7 @@ macro-paths: ["managed_assets/packages/fitb_dbt_utils/macros","data_project_asse
 model-paths: ["data_project_assets/models"]
 test-paths: ["data_project_assets/tests"]
 #analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
-seed-paths: ["managed_assets/seeds"]
+seed-paths: ["data_project_assets/seeds"]
 snapshot-paths: ["managed_assets/snapshots"]
 log-path: "data_project_assets/logs"
 packages-install-path: "managed_assets/packages"
@@ -86,4 +86,7 @@ models:
       +database: DBT_DEMO_METADATA # optional, default is your target database
       +schema: MONITORING_STAGE # optional, default is your target schema
 
+seeds:
+  +schema: sandbox_seeds
+  materialized: incremental  
  

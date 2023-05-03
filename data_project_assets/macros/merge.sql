@@ -186,7 +186,7 @@
                         {{ conds }}
             {%- endfor -%}
             {% endif %} 
-        and DBT_INTERNAL_SOURCE.INGESTION_UNIQUE_KEY <> DBT_INTERNAL_DEST.INGESTION_UNIQUE_KEY 
+ {#       and DBT_INTERNAL_SOURCE.INGESTION_UNIQUE_KEY <> DBT_INTERNAL_DEST.INGESTION_UNIQUE_KEY  #}
                
         then update set
         {%- for column_name in update_columns -%}
