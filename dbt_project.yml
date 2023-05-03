@@ -88,5 +88,5 @@ models:
 
 seeds:
   +schema: sandbox_seeds
-  materialized: incremental  
+  materialized: seed  
  
