@@ -18,7 +18,11 @@ where 1=0
 union all
 select {{ dbt_utils.star (from=ref('PDP_ORG_NM_DIM')) }} 
 from {{ create_stream (ref('PDP_ORG_NM_DIM')) }}
-where METADATA$ACTION = 'INSERT'     
+where METADATA$ACTION = 'INSERT'   
+union all
+select {{ dbt_utils.star (from=ref('PDP_ORG_NM_DIM')) }} 
+from {{ create_stream (ref('PDP_ORG_NM_DIM_test')) }}
+where METADATA$ACTION = 'INSERT'      
 ),
 LEGAL_NM as (
 SELECT CONT_ID,

@@ -26,7 +26,7 @@
 				WAREHOUSE = {{target.warehouse}} 
 				SCHEDULE = '1 minute'
 				QUERY_TAG = '{{table.identifier}}_TRANSFORM_ROOT_LOAD_TASK'
-				ERROR_INTEGRATION = '{{err_int}}'
+			{#	ERROR_INTEGRATION = '{{err_int}}' #}
 				SUSPEND_TASK_AFTER_NUM_FAILURES = 1
 				COMMENT = 'This Root Task triggers child tasks in transform layer whenever stream has new records'
 				WHEN
