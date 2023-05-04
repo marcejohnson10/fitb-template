@@ -7,13 +7,8 @@
         {% set aud_tbl_nm = (target.database | replace('_DB', '') | replace('_NP', '') | replace('_P', '')) + '_' +  target.schema %}
     {% endif -%}
     
-    {#--generate error integration name --#}
-    {% if '_P' in target.database %}
-        {% set err_int = 'aws_integration_snowflake_task_p' %}
-    {% else %}
-    {% set err_int = 'aws_integration_snowflake_task_np' %}
-    {% endif %}
-    
+
+
     {%- if execute -%}  
 	        {%- if var("use_snowflake_tasks", true) -%}
                 {%- call statement('sus_root_task', fetch_result=False) -%}
