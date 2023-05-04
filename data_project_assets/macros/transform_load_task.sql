@@ -96,20 +96,9 @@
 						commit;
 			
 						-- Updated the audit table in case of failure
-						exception 
-						when other then
-								let sql_err := sqlerrm;
-								begin transaction;
-								update {{target.database}}.{{target.schema}}.{{aud_tbl_nm}}_TASK_AUDIT a
-								set a.T_STATUS =  'FAILED',
-									a.Z_END_TS = current_timestamp(),
-									a.T_ERR_MSG = :sql_err
-								where a.Z_END_TS is null
-								and   a.Z_STRT_TS = (select max(Z_STRT_TS) 
-											from {{target.database}}.{{target.schema}}.{{aud_tbl_nm}}_TASK_AUDIT 
-											where T_CHILD_TSK_NM =  '{{this.identifier}}_STREAM_TASK');
+
 								commit;
-								raise;
+								
 						end
 						$$
 				{%- endcall -%}
