@@ -13,3 +13,5 @@
   {{ dbtplyr.across(cols_n, "sum({{var}}) as {{var}}_tot") }}
   {{ dbtplyr.across(cols_ind, "mean({{var}}) as {{var}}_avg") }}
 
+{#https://hub.getdbt.com/emilyriederer/dbtplyr/latest/#}
+{#https://emilyriederer.github.io/dbtplyr/#!/macro/macro.dbtplyr.one_of#}
