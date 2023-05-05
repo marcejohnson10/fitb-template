@@ -1,1 +1,1 @@
-select * from DBT_DEMO_PROJECT.RAW.PDP_ORG_NM_DIM_SRC
+select * from dbt_demo_project.raw.pdp_org_nm_dim_src
