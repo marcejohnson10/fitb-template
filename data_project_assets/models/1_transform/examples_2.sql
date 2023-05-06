@@ -24,6 +24,11 @@
 {%- do tgt_col_lst.append(tgt_col) -%} 
 #}
 
+  {% for i in my_list %}
+    select {{i}} from {{ ref('PDP_ORG_NM_DIM') }}
+   {% endfor %}
+
+{{i}}
 {{dest_col}}
 {{my_meta_list_2}}
 {{my_meta_list}}
