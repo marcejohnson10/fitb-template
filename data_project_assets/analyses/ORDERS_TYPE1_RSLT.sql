@@ -1,5 +1,6 @@
 {{
     config(
+        enabled = false,
         materialized ='incremental',
         unique_key = 'INGESTION_UNIQUE_KEY',
         on_schema_change='sync_all_columns',
