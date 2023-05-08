@@ -6,6 +6,8 @@
 {% endif %} 
 #}
 select 
+
+'{{generate_schema_name()}}' as cust_schema,
 {% if  env_var('DBT_MY_ENV') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
 '{{env_var('DBT_MY_DB')}}' x_env_my_db,
 '{{env_var('DBT_MY_ENV')}}' x_env_my_env,
