@@ -19,3 +19,9 @@ version: 2
 #              - not_null
 #              - accepted_values
 #              - relationships
+
+sources:
+
+    - name: raw #  fitb_tech_transformation: 
+      database: "{{env_var('DBT_MY_ENV')}}"
+      schema: raw 
