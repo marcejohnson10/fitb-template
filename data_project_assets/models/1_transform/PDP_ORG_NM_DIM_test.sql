@@ -1,1 +1,0 @@
-select * from DBT_DEMO_PROJECT.RAW.PDP_ORG_NM_DIM_SRC
