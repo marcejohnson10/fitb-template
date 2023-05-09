@@ -13,6 +13,8 @@ select
 '{{env_var('DBT_MY_ENV')}}' x_env_my_env,
 '{{ var('proj_env') }}' as var_env,
 '{{ var('proj_db') }}' as var_db,
+'{{ var('proj_schema_transform') }}' as var_schema_tranform,
+'{{ var('proj_schema_data_product') }}' as var_schema_data_product,
 '{{ source('raw','orders')}}'  sr_database,
 '{{custom_schema_name}}' as custom_sch_nm,
 '{{ target_model }}'  x_model,
