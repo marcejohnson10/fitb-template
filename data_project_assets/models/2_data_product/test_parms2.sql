@@ -7,12 +7,14 @@
 #}
 select 
 
-'{{generate_schema_name()}}' as cust_schema,
+'{{generate_schema_name()}}_x' as cust_schema,
 {% if  env_var('DBT_MY_ENV') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
 '{{env_var('DBT_MY_DB')}}' x_env_my_db,
 '{{env_var('DBT_MY_ENV')}}' x_env_my_env,
-'{{ var("env") }}' as var_env,
+'{{ var('proj_env') }}' as var_env,
+'{{ var('proj_db') }}' as var_db,
 '{{ source('raw','orders')}}'  sr_database,
+'{{custom_schema_name}}' as custom_sch_nm,
 '{{ target_model }}'  x_model,
 '{{ target.type }}' x_type,
 '{{ target.schema }}' x_schema,
