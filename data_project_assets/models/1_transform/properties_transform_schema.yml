@@ -5,17 +5,20 @@
 
 version: 2
 
-#models:
+models:
 
-
-#    - name: orders_rslt
-#      description: "orders results table"
-#      columns:
-#          - name: O_ORDERKEY
-#            description: "The primary key for this table"
+    - name: PDP_ORG_NM_DIM
+      description: "org name results table"
+      columns:
+          - name: ORGANIZATION_NAME
+            description: "full name of org"
 #            tests:
-#              - dbt_constraints.unique_key
-#              - unique
-#              - not_null
-#              - accepted_values
-#              - relationships
+#              - dbt_expectations.expect_column_values_to_be_of_type:
+#                  column_type: timestamp
+#    - name: orders_datatype_test
+
+sources:
+
+    - name: raw #  fitb_tech_transformation: 
+      database: "{{env_var('DBT_MY_ENV')}}"
+      schema: raw 
