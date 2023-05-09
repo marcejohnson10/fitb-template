@@ -20,7 +20,7 @@ profile: 'my_project_profile'
 ###################################################################################
 vars:
   start_date: '2016-06-01'
-  env: "{{ env_var('DBT_USER') }}"
+  env: "{{ env_var('DBT_MY_ENV') }}"
   
    # Enables the package DBT_CONSTRAINTS. Package details: https://hub.getdbt.com/snowflake-labs/dbt_constraints/latest/
   dbt_constraints_enabled: false
