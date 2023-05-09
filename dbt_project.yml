@@ -19,7 +19,9 @@ profile: 'my_project_profile'
 # For use in models or other objects, or to control packages in the project
 ###################################################################################
 vars:
-
+  start_date: '2016-06-01'
+  env: "{{ env_var('DBT_USER') }}"
+  
    # Enables the package DBT_CONSTRAINTS. Package details: https://hub.getdbt.com/snowflake-labs/dbt_constraints/latest/
   dbt_constraints_enabled: false
   # The DBT_CONSTRAINTS package can also add constraints on sources if you have sufficient privileges

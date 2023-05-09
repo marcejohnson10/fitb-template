@@ -11,6 +11,7 @@ select
 {% if  env_var('DBT_MY_ENV') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
 '{{env_var('DBT_MY_DB')}}' x_env_my_db,
 '{{env_var('DBT_MY_ENV')}}' x_env_my_env,
+'{{ var("env") }}' as var_env,
 '{{ source('raw','orders')}}'  sr_database,
 '{{ target_model }}'  x_model,
 '{{ target.type }}' x_type,
