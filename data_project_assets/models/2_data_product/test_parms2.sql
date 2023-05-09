@@ -6,11 +6,11 @@
 {% endif %} 
 #}
 select 
-
+'{{env_var('DBT_KEY')}}'
 '{{generate_schema_name()}}_x' as cust_schema,
-{% if  env_var('DBT_MY_ENV') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
-'{{env_var('DBT_MY_DB')}}' x_env_my_db,
-'{{env_var('DBT_MY_ENV')}}' x_env_my_env,
+{% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
+'{{env_var('DBT_DATABASE')}}' x_env_my_db,
+'{{env_var('DBT_ENVIRONMENT')}}' x_env_my_env,
 '{{ var('proj_env') }}' as var_env,
 '{{ var('proj_db') }}' as var_db,
 '{{ var('proj_schema_transform') }}' as var_schema_tranform,

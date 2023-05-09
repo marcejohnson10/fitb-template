@@ -6,9 +6,9 @@
 {% endif %} 
 #}
 select 
-{% if  env_var('DBT_MY_ENV') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
-'{{env_var('DBT_MY_DB')}}' x_env_my_db,
-'{{env_var('DBT_MY_ENV')}}' x_env_my_env,
+{% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
+'{{env_var('DBT_DATABASE')}}' x_env_my_db,
+'{{env_var('DBT_ENVIRONMENT')}}' x_env_my_env,
 '{{ source('raw','orders')}}'  sr_database,
 '{{ target_model }}'  x_model,
 '{{ target.type }}' x_type,
