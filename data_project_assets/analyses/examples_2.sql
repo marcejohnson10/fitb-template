@@ -1,4 +1,4 @@
-
+{{ config(enabled = false) }}
 {% set mylist = ['name_usage_typ','Z_CURRENT_FLAG'] %}
 {% set cols = dbtplyr.get_column_names( ref('PDP_ORG_NM_DIM') ) %}
 {% set cols_n = dbtplyr.starts_with('n', cols) %}
