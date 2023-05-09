@@ -39,7 +39,7 @@ query-comment:
 macro-paths: ["managed_assets/packages/fitb_dbt_utils/macros","data_project_assets/macros"]
 model-paths: ["data_project_assets/models"]
 test-paths: ["data_project_assets/tests"]
-analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
+#analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
 seed-paths: ["data_project_assets/seeds"]
 snapshot-paths: ["managed_assets/snapshots"]
 log-path: "data_project_assets/logs"

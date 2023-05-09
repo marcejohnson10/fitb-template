@@ -1,6 +1,8 @@
 -- Returns a list of the columns from a relation, so you can then iterate in a for loop
 --adapter.get_columns_in_relation, dbt_utils.get_filtered_columns_in_relation
 --{% set column_names = dbt_utils.get_filtered_columns_in_relation(from=ref('PDP_ORG_NM_DIM')) %}
+
+
 {% set column_names = adapter.get_columns_in_relation('PDP_ORG_NM_DIM') %}
 {{ column_names }}) 
 {% set my_yaml_string = toyaml(column_names) %}
