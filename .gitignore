@@ -2,6 +2,6 @@
 managed_assets/packages/
 data_project_assets/logs/
 data_project_assets/target/
-dbt_packages/
+packages/
 target/
 logs/
