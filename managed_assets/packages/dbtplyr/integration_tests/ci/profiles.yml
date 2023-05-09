@@ -1,0 +1,27 @@
+# HEY! This file is used in the dbt-audit-helper integrations tests with CircleCI.
+# You should __NEVER__ check credentials into version control. Thanks for reading :)
+
+config:
+    send_anonymous_usage_stats: False
+    use_colors: True
+
+dbtplyr:
+  target: postgres
+  outputs:
+    postgres:
+      type: postgres
+      host: "{{ env_var('POSTGRES_TEST_HOST') }}"
+      user: "{{ env_var('POSTGRES_TEST_USER') }}"
+      pass: "{{ env_var('POSTGRES_TEST_PASS') }}"
+      port: "{{ env_var('POSTGRES_TEST_PORT') | as_number }}"
+      dbname: "{{ env_var('POSTGRES_TEST_DBNAME') }}"
+      schema: dbtply_integration_tests_postgres
+      threads: 1
+
+    bigquery:
+      type: bigquery
+      method: service-account
+      keyfile: "{{ env_var('BIGQUERY_SERVICE_KEY_PATH') }}"
+      project: "{{ env_var('BIGQUERY_TEST_DATABASE') }}"
+      schema: dbtplyr_integration_tests_bigquery
+      threads: 1
