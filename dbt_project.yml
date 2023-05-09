@@ -35,7 +35,7 @@ query-comment:
 # These configurations specify where dbt should look for different types of files
 # and any hooks to execute at start or end of a project run or build. 
 ###################################################################################
-<<<<<<< HEAD
+
 macro-paths: ["managed_assets/packages/fitb_dbt_utils/macros","data_project_assets/macros"]
 model-paths: ["data_project_assets/models"]
 test-paths: ["data_project_assets/tests"]
@@ -45,7 +45,7 @@ snapshot-paths: ["managed_assets/snapshots"]
 log-path: "data_project_assets/logs"
 packages-install-path: "managed_assets/packages"
 target-path: "data_project_assets/target"   # directory which will store compiled SQL files
-=======
+
 #macro-paths: ["macros", "packages/managed_assets/fitb_dbt_utils/macros"]
 macro-paths: ["packages/managed_assets/fitb_dbt_utils/macros","macros"]
 model-paths: ["models"]
@@ -56,7 +56,7 @@ snapshot-paths: ["packages/managed_assets/snapshots"]
 log-path: "packages/logs"
 packages-install-path: "packages/managed_assets/packages"
 target-path: "target"   # directory which will store compiled SQL files
->>>>>>> a3ab103b90cd94f514f51d3c463aa7b5d765a58b
+
 clean-targets:         # directories to be removed by `dbt clean`
   - "packages/managed_assets/target"
   - "target"
@@ -104,7 +104,7 @@ models:
         {%- else -%} DATA_PRODUCT
         {%- endif -%}
       materialized: view
-<<<<<<< HEAD
+
 
   dbt_snowflake_monitoring:
     +database: DBT_DEMO_METADATA # optional, default is your target database
@@ -116,12 +116,12 @@ models:
 seeds:
   +schema: sandbox_seeds
   materialized: seed  
-=======
+
 #sources:
 #  fitb_tech_transformation: 
 #    raw: 
 #      +enabled: true
->>>>>>> a3ab103b90cd94f514f51d3c463aa7b5d765a58b
+
  
 sources:
   fitb_tech_transformation: 
