@@ -18,7 +18,7 @@ models:
 #    - name: orders_datatype_test
 
 sources:
-
-    - name: raw #  fitb_tech_transformation: 
+#  fitb_tech_transformation: 
+    - name: raw 
       database: "{{env_var('DBT_MY_ENV')}}"
       schema: raw 
