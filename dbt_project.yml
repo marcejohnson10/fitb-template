@@ -42,7 +42,7 @@ test-paths: ["data_project_assets/tests"]
 #analysis-paths: ["data_project_assets/analyses"] #Path commented so analyses sql files are not compiled during DBT BUILD runs
 seed-paths: ["data_project_assets/seeds"]
 snapshot-paths: ["managed_assets/snapshots"]
-log-path: "data_project_assets/logs"
+log-path: "logs"
 packages-install-path: "managed_assets/packages"
 target-path: "data_project_assets/target"   # directory which will store compiled SQL files
 
