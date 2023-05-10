@@ -89,6 +89,8 @@ dispatch:
 
 models:
   my_project_name:    
+    database: "{{ env_var('DBT_DATABASE') }}"
+    +copy_grants: true
     +persist_docs:
       relation: true
       columns: true
@@ -111,12 +113,12 @@ models:
 
 
 
-  dbt_snowflake_monitoring:
-    +database: DBT_DEMO_METADATA # optional, default is your target database
-    +schema: MONITORING # optional, default is your target schema
-    staging:
-      +database: DBT_DEMO_METADATA # optional, default is your target database
-      +schema: MONITORING_STAGE # optional, default is your target schema
+#  dbt_snowflake_monitoring:
+#    +database: DBT_DEMO_METADATA # optional, default is your target database
+#    +schema: MONITORING # optional, default is your target schema
+#    staging:
+#      +database: DBT_DEMO_METADATA # optional, default is your target database
+#      +schema: MONITORING_STAGE # optional, default is your target schema
 
 seeds:
   +schema: sandbox_seeds

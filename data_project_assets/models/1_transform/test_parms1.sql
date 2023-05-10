@@ -6,7 +6,7 @@
 {% endif %} 
 #}
 select 
-{% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
+{#{% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- endif -%}_x as sandbox,#}
 '{{env_var('DBT_DATABASE')}}' x_env_my_db,
 '{{env_var('DBT_ENVIRONMENT')}}' x_env_my_env,
 '{{ source('raw','orders')}}'  sr_database,

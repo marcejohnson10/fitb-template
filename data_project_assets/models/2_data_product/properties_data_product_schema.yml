@@ -5,23 +5,23 @@
 
 version: 2
 
-#models:
+models:
 
 
-#    - name: orders_rslt
+    - name: PR_ORG_LEGALFULLNM_DP
 #      description: "orders results table"
-#      columns:
-#          - name: O_ORDERKEY
+      columns:
+          - name: CONT_ID
 #            description: "The primary key for this table"
-#            tests:
+            tests:
 #              - dbt_constraints.unique_key
 #              - unique
-#              - not_null
+              - not_null
 #              - accepted_values
 #              - relationships
 
-sources:
+#sources:
 #  fitb_tech_transformation: 
     - name: raw 
-      database: "{{env_var('DBT_MY_ENV')}}"
+      database: "{{env_var('DBT_ENVIRONMENT')}}"
       schema: raw 
