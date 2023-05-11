@@ -1,12 +1,14 @@
+{{ config(materialized='table') }}
 {% set refs = [] %}
 {%- set target_relation = this.incorporate(type='view') -%}
 {%- set existing_relation = load_cached_relation(this) -%}
 
-select
+select distinct
+'{{model.package_name}}' as package_name,
 '{{target_relation}}' as target_rel,
 '{{existing_relation}}' as existing_rel,
 '{{dbt_version}}' as dbt_version,
-  {% for ref in model.refs %}  {%- do refs.append(ref[0]) -%} {% endfor %} '{{ tojson(refs) }}' as refs,
+  {% for ref in model.refs %}  {%- do refs.append(ref[0]) -%} {% endfor %} '{{ tojson(refs) }}'::variant as refs,
 '{{ model.dbt_schema_version }}' as v_dbt_schema_version,
 '{{dbt_incremental_full_refresh}}' as x_dbt_incremental_full_refresh,
 '{{ model.dbt_incremental_full_refresh }}' as v_dbt_incremental_full_refresh,
