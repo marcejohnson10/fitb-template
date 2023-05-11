@@ -53,5 +53,5 @@ select distinct
 '{{ this.name }}' as x_this_name,
 '{{ this.identifier }}' as xx_this_identifier
 from {{ ref('PR_ORG_LEGALFULLNM_DP') }} a 
---left join {{ ref('PR_ORG_LEGALFULLNM') }} b on a.cont_id = b.cont_id 
+---left join {{ ref('PR_ORG_LEGALFULLNM') }} b on a.cont_id = b.cont_id 
 
