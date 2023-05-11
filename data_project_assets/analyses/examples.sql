@@ -1,4 +1,4 @@
-{{ config(enabled = false) }}
+{{ config(enabled = true) }}
 {% set mylist = ['name_usage_typ','Z_CURRENT_FLAG'] %}
 
 with src as (

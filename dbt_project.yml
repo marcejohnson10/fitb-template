@@ -43,9 +43,9 @@ vars:
   dbt_constraints_sources_enabled: false
   'dbt_date:time_zone': 'America/New_York'
 
-query-comment:
-  comment: '{{ dbt_snowflake_monitoring.get_query_comment(node) }}'
-  append: true # Snowflake removes prefixed comments
+query-comment: "{{marc_query_comment}}"
+#  comment: '{{ dbt_snowflake_monitoring.get_query_comment(node) }}'
+#  append: true # Snowflake removes prefixed comments
     
 ###################################################################################      
 # FILE PATHS & HOOKS
