@@ -4,6 +4,7 @@
 {%- set existing_relation = load_cached_relation(this) -%}
 
 select distinct
+'{{DBT_CLOUD_JOB_ID}}' as DBT_CLOUD_JOB_ID,
 '{{model.package_name}}' as package_name,
 '{{target_relation}}' as target_rel,
 '{{existing_relation}}' as existing_rel,
@@ -51,6 +52,6 @@ select distinct
 '{{ this.schema }}' as x_this_schema,
 '{{ this.name }}' as x_this_name,
 '{{ this.identifier }}' as x_this_identifier
-from {{ ref('PDP_ORG_NM_DIM') }} a 
+from {{ ref('PR_ORG_LEGALFULLNM_DP') }} a 
 --left join {{ ref('PR_ORG_LEGALFULLNM') }} b on a.cont_id = b.cont_id 
 
