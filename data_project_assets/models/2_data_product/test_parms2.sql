@@ -5,6 +5,7 @@
 
 select distinct
 '{{ env_var("DBT_CLOUD_RUN_ID", 1) }}' as DBT_CLOUD_JOB_ID,
+'{{env_var('DBT_ENVIRONMENT')}}' as env_var_dbt_environment,
 '{{model.package_name}}' as package_name,
 '{{target_relation}}' as target_rel,
 '{{existing_relation}}' as existing_rel,
@@ -28,7 +29,6 @@ select distinct
 '{{generate_schema_name()}}' as cust_schema,
 {% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- else -%} 'x' {%- endif -%} as sandbox,
 '{{env_var('DBT_DATABASE')}}' x_env_my_db,
-'{{env_var('DBT_ENVIRONMENT')}}' x_env_my_env,
 '{{ var('proj_env') }}' as var_env,
 '{{ var('proj_db') }}' as var_db,
 '{{ var('proj_schema_transform') }}' as var_schema_tranform,
