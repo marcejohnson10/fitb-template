@@ -107,7 +107,7 @@ models:
 #      schema: data_product 
       materialized: view
       schema: |
-        {% if  env_var('DBT_MY_ENV') == "sandbox" -%} {{target.user}}_data_product
+        {% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_data_product
         {%- else -%} DATA_PRODUCT
         {%- endif -%}
 
