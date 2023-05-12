@@ -4,7 +4,6 @@
 {%- set existing_relation = load_cached_relation(this) -%}
 
 select distinct
-'{{ env_var("DBT_CLOUD_RUN_REASON_CATEGORY", "x") }}' as DBT_CLOUD_JOB_ID,
 '{{env_var('DBT_ENVIRONMENT')}}' as env_var_dbt_environments,
 '{{model.package_name}}' as package_name,
 '{{target_relation}}' as target_rel,
