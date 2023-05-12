@@ -1,14 +1,32 @@
-{#
-{% if execute %} 
-{% set sch  %}
-{{ schema }}
-{% endset %}
-{% endif %} 
-#}
-select 
+{{ config(materialized='table') }}
+{% set refs = [] %}
+{%- set target_relation = this.incorporate(type='view') -%}
+{%- set existing_relation = load_cached_relation(this) -%}
 
-'{{generate_schema_name()}}_x' as cust_schema,
-{% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- endif -%} as sandbox,
+select distinct
+'{{ env_var("DBT_CLOUD_RUN_ID", "manual") }}' as DBT_CLOUD_JOB_ID,
+'{{model.package_name}}' as package_name,
+'{{target_relation}}' as target_rel,
+'{{existing_relation}}' as existing_rel,
+'{{dbt_version}}' as dbt_version,
+  {% for ref in model.refs %}  {%- do refs.append(ref[0]) -%} {% endfor %} '{{ tojson(refs) }}'::variant as refs,
+'{{ model.dbt_schema_version }}' as v_dbt_schema_version,
+'{{dbt_incremental_full_refresh}}' as x_dbt_incremental_full_refresh,
+'{{ model.dbt_incremental_full_refresh }}' as v_dbt_incremental_full_refresh,
+'{{ model.type }}' as v_type,
+'{{ model.name }}' as v_name,
+'{{ model.alias }}' as v_alias,
+'{{ model.materialized }}' as v_materialized,
+'{{ model.package_name }}' as v_package_name,
+'{{ model.original_file_path }}' as v_original_file_path,
+'{{ model.database }}' as v_database,
+'{{ model.schema }}' as v_schema,
+'{{ model.unique_id }}' as v_unique_id,
+'{{ model.resource_type }}' as v_resource_type,
+'{{ model.tags }}' as v_tags,
+'{{model.name}}' as mod_nm,
+'{{generate_schema_name()}}' as cust_schema,
+{% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- else -%} 'x' {%- endif -%} as sandbox,
 '{{env_var('DBT_DATABASE')}}' x_env_my_db,
 '{{env_var('DBT_ENVIRONMENT')}}' x_env_my_env,
 '{{ var('proj_env') }}' as var_env,
@@ -32,8 +50,8 @@ select
 '{{ target.account }}' x_account,
 '{{ this }}' x_this,
 '{{ this.schema }}' as x_this_schema,
-'{{ this.name }}' as x_this_name
---'{{ this.identifier }}' as x_this_identifier
-
-from dual
+'{{ this.name }}' as x_this_name,
+'{{ this.identifier }}' as xx_this_identifier
+from {{ ref('PR_ORG_LEGALFULLNM_DP') }} a 
+---left join {{ ref('PR_ORG_LEGALFULLNM') }} b on a.cont_id = b.cont_id 
 
