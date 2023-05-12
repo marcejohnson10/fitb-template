@@ -5,7 +5,7 @@
 
 select distinct
 '{{ env_var("DBT_CLOUD_RUN_ID", 1) }}' as DBT_CLOUD_JOB_ID,
-'{{env_var('DBT_ENVIRONMENT')}}' as env_var_dbt_environment,
+'{{env_var('DBT_ENVIRONMENT')}}' as env_var_dbt_environments,
 '{{model.package_name}}' as package_name,
 '{{target_relation}}' as target_rel,
 '{{existing_relation}}' as existing_rel,
