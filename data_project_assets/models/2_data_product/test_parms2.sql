@@ -25,7 +25,7 @@ select distinct
 '{{ model.resource_type }}' as v_resource_type,
 '{{ model.tags }}' as v_tags,
 '{{model.name}}' as mod_nm,
-'{{generate_schema_name()}}_x' as cust_schema,
+'{{generate_schema_name()}}' as cust_schema,
 {% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- else -%} 'x' {%- endif -%} as sandbox,
 '{{env_var('DBT_DATABASE')}}' x_env_my_db,
 '{{env_var('DBT_ENVIRONMENT')}}' x_env_my_env,

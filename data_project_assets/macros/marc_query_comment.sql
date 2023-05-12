@@ -1,14 +1,14 @@
 
-{% macro query_comment() %}
+{% macro marc_query_comment() %}
 
- {{node.name}}
-{{node.alias}}
-{{node.package_name}}
-{{node.original_file_path}}
-{{node.database}}
-{{node.schema}}
-{{node.unique_id}}
-{{node.resource_type}}
-{{node.tags}}
+ {{model.name}}
+{{model.alias}}
+{{model.package_name}}
+{{model.original_file_path}}
+{{model.database}}
+{{model.schema}}
+{{model.unique_id}}
+{{model.resource_type}}
+{{model.tags}}
 
 {% endmacro %}

@@ -20,8 +20,8 @@ models:
 #              - accepted_values
 #              - relationships
 
-#sources:
+#sources: 
 #  fitb_tech_transformation: 
-    - name: raw 
-      database: "{{env_var('DBT_ENVIRONMENT')}}"
-      schema: raw 
+#    - name: raw  
+#      database: "{{env_var('DBT_DATABASE')}}"
+#      schema: raw 

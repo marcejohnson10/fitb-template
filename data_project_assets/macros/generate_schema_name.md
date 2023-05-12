@@ -9,6 +9,8 @@
 
         {{ default_schema }}_{{ custom_schema_name | trim }}
 
+    {% do log("NODE: " ~ node ~ ", DefaultSchema: " ~ default_schema ~ ", CustomSchema: " ~ custom_schema_name, info=true) %}
+    
     {%- endif -%}
 
 {#
