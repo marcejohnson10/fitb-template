@@ -4,7 +4,8 @@
 {%- set existing_relation = load_cached_relation(this) -%}
 
 select distinct
-'{{ env_var("DBT_CLOUD_RUN_ID", target.schema) }}' as DBT_CLOUD_JOB_ID,
+'{{env_var('DBT_CLOUD_JOB_ID','x')}}' as env_var_DBT_CLOUD_JOB_ID,
+'{{env_var('DBT_ENVIRONMENT')}}' as env_var_dbt_environments,
 '{{model.package_name}}' as package_name,
 '{{target_relation}}' as target_rel,
 '{{existing_relation}}' as existing_rel,
@@ -28,12 +29,11 @@ select distinct
 '{{generate_schema_name()}}' as cust_schema,
 {% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} 'sandbox' {%- else -%} 'x' {%- endif -%} as sandbox,
 '{{env_var('DBT_DATABASE')}}' x_env_my_db,
-'{{env_var('DBT_ENVIRONMENT')}}' x_env_my_env,
 '{{ var('proj_env') }}' as var_env,
 '{{ var('proj_db') }}' as var_db,
 '{{ var('proj_schema_transform') }}' as var_schema_tranform,
 '{{ var('proj_schema_data_product') }}' as var_schema_data_product,
-'{{ source('raw','orders')}}'  sr_database,
+{#'{{ source('raw','orders')}}'  sr_database,#}
 '{{custom_schema_name}}' as custom_sch_nm,
 '{{ target_model }}'  x_model,
 '{{ target.type }}' x_type,
@@ -53,5 +53,5 @@ select distinct
 '{{ this.name }}' as x_this_name,
 '{{ this.identifier }}' as xx_this_identifier
 from {{ ref('PR_ORG_LEGALFULLNM_DP') }} a 
----left join {{ ref('PR_ORG_LEGALFULLNM') }} b on a.cont_id = b.cont_id 
+
 

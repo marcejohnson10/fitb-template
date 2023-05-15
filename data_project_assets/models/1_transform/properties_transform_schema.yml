@@ -17,8 +17,11 @@ models:
 #                  column_type: timestamp
 #    - name: orders_datatype_test
 
-#sources: 
-#  fitb_tech_transformation: 
-#    - name: raw  
-#      database: "{{env_var('DBT_DATABASE')}}"
-#      schema: raw 
+sources:
+  - name: raw
+    database: DBT_DEMO_PROJECT 
+    schema: raw  
+    tables:
+      - name: orders
+#      - name: customers
+      - name: pdp_org_nm_dim_src 
