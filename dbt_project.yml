@@ -43,7 +43,7 @@ vars:
 #  dbt_constraints_sources_enabled: false
 #  'dbt_date:time_zone': 'America/New_York'
 
-query-comment: "{{marc_query_comment}}"
+#query-comment: "{{marc_query_comment}}"
 #  comment: '{{ dbt_snowflake_monitoring.get_query_comment(node) }}'
 #  append: true # Snowflake removes prefixed comments
     
@@ -131,9 +131,9 @@ seeds:
 #      +enabled: true
 
  
-sources:
-  fitb_tech_transformation: 
-    raw: 
-    database: "{{env_var('DBT_DATABASE')}}"
-    schema: raw 
+#sources:
+#  fitb_tech_transformation: 
+#    raw: 
+#    database: "{{env_var('DBT_DATABASE')}}"
+#    schema: raw 
 #      +enabled: true
