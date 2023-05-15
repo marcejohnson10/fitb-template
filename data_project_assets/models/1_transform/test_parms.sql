@@ -1,3 +1,4 @@
+{{ config(enabled = false) }}
 select 
 {{env_var('DBT_DATABASE')}} x_env_my_db,
 {{env_var('DBT_ENVIRONMENT')}} x_env_my_env,
