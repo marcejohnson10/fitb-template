@@ -1,1 +1,0 @@
-select * from dbt_demo_project.transform.orders_rslt
