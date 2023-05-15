@@ -33,7 +33,7 @@ select distinct
 '{{ var('proj_db') }}' as var_db,
 '{{ var('proj_schema_transform') }}' as var_schema_tranform,
 '{{ var('proj_schema_data_product') }}' as var_schema_data_product,
-'{{ source('raw','orders')}}'  sr_database,
+{#'{{ source('raw','orders')}}'  sr_database,#}
 '{{custom_schema_name}}' as custom_sch_nm,
 '{{ target_model }}'  x_model,
 '{{ target.type }}' x_type,
@@ -53,5 +53,5 @@ select distinct
 '{{ this.name }}' as x_this_name,
 '{{ this.identifier }}' as xx_this_identifier
 from {{ ref('PR_ORG_LEGALFULLNM_DP') }} a 
----left join {{ ref('PR_ORG_LEGALFULLNM') }} b on a.cont_id = b.cont_id 
+
 
