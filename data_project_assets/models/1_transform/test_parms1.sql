@@ -1,3 +1,4 @@
+{{ config(enabled = false) }}
 {#
 {% if execute %} 
 {% set sch  %}

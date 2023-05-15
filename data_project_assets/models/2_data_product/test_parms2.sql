@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 {% set refs = [] %}
-{%- set target_relation = this.incorporate(type='view') -%}
-{%- set existing_relation = load_cached_relation(this) -%}
+{#- set target_relation = this.incorporate(type='view') -#}
+{#- set existing_relation = load_cached_relation(this) -#}
 
 select distinct
 '{{env_var('DBT_CLOUD_JOB_ID','x')}}' as env_var_DBT_CLOUD_JOB_ID,
