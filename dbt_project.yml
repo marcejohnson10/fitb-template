@@ -134,9 +134,9 @@ seeds:
 #      +enabled: true
 
  
-sources:
-  fitb_tech_transformation: 
-    raw: 
+#sources:
+#  fitb_tech_transformation: 
+#    raw: 
 #    database: "{{env_var('DBT_DATABASE')}}"
 #    schema: raw 
 #      +enabled: true
