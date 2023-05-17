@@ -10,12 +10,22 @@ models:
     - name: PDP_ORG_NM_DIM
       description: "org name results table"
       columns:
+          - name: CONT_ID
+            description: "unique record identifier"
+            tests:
+              - unique:
+                  config:
+                    severity: error
+                    error_if: ">0"
+              - not_null
+
           - name: ORGANIZATION_NAME
-            description: "full name of org"
-#            tests:
-#              - dbt_expectations.expect_column_values_to_be_of_type:
-#                  column_type: timestamp
-#    - name: orders_datatype_test
+            description: "name of organization"
+            tests:
+              - accepted_values:
+                  values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
+                  severity: warn
+                  warn_if: ">0"
 
 sources:
   - name: raw
