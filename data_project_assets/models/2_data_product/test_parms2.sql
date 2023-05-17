@@ -4,7 +4,7 @@
 {#- set existing_relation = load_cached_relation(this) -#}
 
 select distinct
-current_timestamp as cur_timestamp,
+current_timestamp as cur_timestamp_fld,
 '{{env_var('DBT_CLOUD_JOB_ID','x')}}' as env_var_DBT_CLOUD_JOB_ID,
 '{{env_var('DBT_ENVIRONMENT')}}' as env_var_dbt_environments,
 '{{model.package_name}}' as package_name,
