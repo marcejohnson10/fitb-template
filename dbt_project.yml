@@ -131,7 +131,7 @@ seeds:
 #sources:
 #  fitb_tech_transformation: 
 #    raw: 
-#      +enabled: true
+#      +enabled: false
 
  
 #sources:
