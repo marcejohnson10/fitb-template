@@ -9,8 +9,8 @@ packages:
     revision: "mj-utilities"     
 #  - package: calogica/dbt_expectations
 #    version: 0.8.3
-#  - package: get-select/dbt_snowflake_monitoring
-#    version: 4.0.2
+  - package: get-select/dbt_snowflake_monitoring
+    version: 4.0.2
 #  - package: emilyriederer/dbtplyr
 #    version: 0.3.2
 #  - git: ""git@github.info53.com:fitb-data-pipelines/dbt-template.git""
