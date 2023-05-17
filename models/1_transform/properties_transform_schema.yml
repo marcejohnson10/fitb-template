@@ -19,3 +19,12 @@ version: 2
 #              - not_null
 #              - accepted_values
 #              - relationships
+
+sources:
+  - name: raw
+    database: DBT_DEMO_PROJECT 
+    schema: raw  
+    tables:
+      - name: orders
+#      - name: customers
+      - name: pdp_org_nm_dim_src
