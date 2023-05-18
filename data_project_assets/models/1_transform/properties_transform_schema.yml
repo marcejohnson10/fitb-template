@@ -19,13 +19,16 @@ models:
                     error_if: ">0"
               - not_null
 
-          - name: ORGANIZATION_NAME
-            description: "name of organization"
+          - name: NAME_USAGE_TYPE
+            description: "name of usage type"
             tests:
               - accepted_values:
-                  values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
+                  values: ['1000003','1000004']
                   severity: warn
                   warn_if: ">0"
+
+
+
 
 sources:
   - name: raw
