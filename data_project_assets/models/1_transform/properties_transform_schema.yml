@@ -7,10 +7,10 @@ version: 2
 
 models:
 
-    - name: PDP_ORG_NM_DIM
+    - name: org_dim_rslt
       description: "org name results table"
       columns:
-          - name: CONT_ID
+          - name: cont_id
             description: "unique record identifier"
             tests:
               - unique:
@@ -19,11 +19,11 @@ models:
                     error_if: ">0"
               - not_null
 
-          - name: NAME_USAGE_TYPE
-            description: "name of usage type"
+          - name: org_type_code
+            description: "the type of organization"
             tests:
               - accepted_values:
-                  values: ['1000003','1000004']
+                  values: ['3','4']
                   severity: warn
                   warn_if: ">0"
 
@@ -37,4 +37,4 @@ sources:
     tables:
       - name: orders
 #      - name: customers
-      - name: pdp_org_nm_dim_src 
+      - name: org_dim_src 

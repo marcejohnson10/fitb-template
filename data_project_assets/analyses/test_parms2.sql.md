@@ -53,6 +53,6 @@ current_timestamp as cur_timestamp_fld,
 '{{ this.schema }}' as x_this_schema,
 '{{ this.name }}' as x_this_name,
 '{{ this.identifier }}' as xx_this_identifier
-from {{ ref('PR_ORG_LEGALFULLNM_DP') }} a 
+from {{ ref('org_dim_dp') }} a 
 
 

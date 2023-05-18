@@ -8,15 +8,16 @@ version: 2
 models:
 
 
-    - name: PR_ORG_LEGALFULLNM_DP
-#      description: "orders results table"
+    - name: org_dim_dp
+#      description: "orders data product table"
       columns:
-          - name: CONT_ID
-#            description: "The primary key for this table"
-            tests:
+          - name: cont_id
+            description: "The primary key for this table"
+          - name: current_org_flag
+            description: "is the org current flag"
 #              - dbt_constraints.unique_key
 #              - unique
-              - not_null
+#              - not_null
 #              - accepted_values
 #              - relationships
 
