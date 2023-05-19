@@ -4,13 +4,13 @@
     Sample usage with different date:
         dbt run-operation pr_schema_cleanup --args "{'database_to_clean': 'analytics','age_in_days':'15'}"
 #}
-{% macro pr_schema_cleanup(database_to_clean) %}
-
+{% macro pr_schema_cleanup(database_c = none) %}
+{##}
 {% set clean_database %}
-    {%- if database_to_clean is none -%}
+    {%- if database_c is none -%}
         {{ target.database }}
     {%- else -%}
-        {{ database_to_clean }}
+        {{ database_c }}
     {%- endif -%}
 {% endset %}
 
@@ -31,8 +31,8 @@
         {% set schema_drop_list = run_query(find_old_schemas).columns[0].values() %}
 
         {% for schema_to_drop in schema_drop_list %}
-{#            {% do run_query(schema_to_drop) %}
-#}
+            {% do run_query(schema_to_drop) %}
+
             {{ log(schema_to_drop ,True) }}
         {% endfor %}
 

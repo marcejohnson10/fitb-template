@@ -1,1 +1,0 @@
-{% pr_schema_cleanup() %}
