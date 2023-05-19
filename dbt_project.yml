@@ -128,7 +128,8 @@ models:
 
 seeds:
   +schema: raw
-  materialized: seed  
+  materialized: seed 
+  +enabled: false
 
 #sources:
 #  fitb_tech_transformation: 
