@@ -110,7 +110,7 @@ models:
       materialized: table
       schema: |
         {% if env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_data_product
-        {% elif env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{target.user}}_data_product
+        {% elif env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{ target.schema }}_{{target.user}}_data_product
         {%- else -%} data_product
         {%- endif -%} 
 
