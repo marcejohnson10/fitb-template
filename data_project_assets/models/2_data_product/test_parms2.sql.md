@@ -1,3 +1,4 @@
+
 {{ config(materialized='table') }}
 {% set refs = [] %}
 {#- set target_relation = this.incorporate(type='view') -#}

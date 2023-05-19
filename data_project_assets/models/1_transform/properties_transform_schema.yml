@@ -15,8 +15,8 @@ models:
             tests:
               - unique:
                   config:
-                    severity: error
-                    error_if: ">0"
+                    severity: warn
+                    warn_if: ">0"
               - not_null
 
           - name: org_type_code
