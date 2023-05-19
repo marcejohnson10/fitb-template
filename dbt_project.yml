@@ -100,8 +100,8 @@ models:
 #      schema: transform
       materialized: table
       schema: |
-        {% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_transform
-        {% elif  env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{target.user}}_transform
+        {% if env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_transform
+        {% elif env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{target.user}}_transform
         {%- else -%} transform
         {%- endif -%} 
 
@@ -109,8 +109,8 @@ models:
 #      schema: data_product
       materialized: table
       schema: |
-        {% if  env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_data_product
-        {% elif  env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{target.user}}_data_product
+        {% if env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_data_product
+        {% elif env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{target.user}}_data_product
         {%- else -%} data_product
         {%- endif -%} 
 
