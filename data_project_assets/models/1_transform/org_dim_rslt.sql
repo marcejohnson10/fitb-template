@@ -1,1 +1,1 @@
-select * from {{ source('raw', 'org_dim_src') }}
+select * from {{ ref('org_dim_src') }}

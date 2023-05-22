@@ -4,13 +4,13 @@
     Sample usage with different date:
         dbt run-operation pr_schema_cleanup --args "{'database_to_clean': 'analytics','age_in_days':'15'}"
 #}
-{% macro pr_schema_cleanup(database_c = none) %}
+{% macro pr_schema_cleanup(database_to_clean = none) %}
 {##}
 {% set clean_database %}
-    {%- if database_c is none -%}
+    {%- if database_to_clean is none -%}
         {{ target.database }}
     {%- else -%}
-        {{ database_c }}
+        {{ database_to_clean }}
     {%- endif -%}
 {% endset %}
 
