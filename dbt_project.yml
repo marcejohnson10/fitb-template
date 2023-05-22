@@ -101,7 +101,8 @@ models:
       materialized: table
       schema: |
         {% if env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_transform
-        {% elif env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{target.user}}_transform
+        {% elif env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{ target.schema }}_{{target.user}}_transform
+        {% elif env_var('DBT_ENVIRONMENT') == "qa-pr" -%} {{ target.schema }}_transform
         {%- else -%} transform
         {%- endif -%} 
 
@@ -111,6 +112,7 @@ models:
       schema: |
         {% if env_var('DBT_ENVIRONMENT') == "sandbox" -%} {{target.user}}_data_product
         {% elif env_var('DBT_ENVIRONMENT') == "dev-pr" -%} {{ target.schema }}_{{target.user}}_data_product
+        {% elif env_var('DBT_ENVIRONMENT') == "qa-pr" -%} {{ target.schema }}_data_product        
         {%- else -%} data_product
         {%- endif -%} 
 
