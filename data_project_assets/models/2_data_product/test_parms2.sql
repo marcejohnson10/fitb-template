@@ -6,7 +6,7 @@
 
 select distinct
 current_timestamp as cur_timestamp_fld,
-'{{env_var('DBT_CLOUD_JOB_ID','x')}}' as env_var_DBT_CLOUD_JOB_ID,
+'{{env_var('DBT_CLOUD_JOB_ID','z')}}' as env_var_DBT_CLOUD_JOB_ID,
 '{{env_var('DBT_ENVIRONMENT')}}' as env_var_dbt_environments,
 '{{model.package_name}}' as package_name,
 '{{target_relation}}' as target_rel,
