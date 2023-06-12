@@ -76,7 +76,9 @@ dispatch:
   - macro_namespace: dbt_utils
     search_order: ['my_project_name', 'fitb_dbt_utils', 'dbt_utils']
 
-
+on-run-end:
+  - "{{ dbt_artifacts.upload_results(results) }}"
+#  - "{% if target.name == 'prod' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"`)
 
 ################################################################################### 
 # PROJECT RESOURCES 
